@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>sakila</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApYYWN0b3JfaWTSIiMxMl8QD05TTXV0YWJs
+			ZVN0cmluZ6MxMydYTlNTdHJpbmfSIiM1Nl5OU011dGFibGVBcnJh
+			eaM1NydXTlNBcnJhedIiIyY5oiYnAAgAEQAaACQAKQAyADcASQBM
+			AFEAUwBhAGcAbgB2AIEAiACMAI4AkACSAJYAmACaAJwAngCjAKgA
+			rQDWAN0A3gDfAOEA5gDxAPoBEAEUASEBKgEvATEBMwE1AToBRAFG
+			AU8BVAFmAWoBcwF4AYcBiwGTAZgAAAAAAAACAQAAAAAAAAA6AAAA
+			AAAAAAAAAAAAAAABmw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1706, 733}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>show tables;
+
+select * from actor;
+
+select * from address;
+
+select title from film;
+
+select name as 'language' from sakila.language;
+
+select count(store_id) as number_of_stores from store;
+
+select count(staff_id) number_of_staff from staff;
+
+select first_name from staff;</string>
+			<key>table</key>
+			<string>actor</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select first_name from staff</string>
+		<string>select count(store_id) as number_of_stores from store</string>
+		<string>select count(staff_id) number_of_staff from staff</string>
+		<string>select count(staff_id) from staff</string>
+		<string>select count(store_id) from store</string>
+		<string>select name as 'language' from sakila.language</string>
+		<string>select title from film</string>
+		<string>select * from {show tables}</string>
+		<string>select * form {show tables}</string>
+		<string>show tables</string>
+		<string>select * from address</string>
+		<string>select * from actor</string>
+		<string>show columns from sakila</string>
+		<string>select count(stuff_id) from stuff</string>
+		<string>select * count(`store_id`) from store</string>
+		<string>select count(`store_id`) from store</string>
+		<string>select columns from sakila-schema</string>
+		<string>select columns from 'sakila-schema'</string>
+		<string>select table_shema</string>
+		<string>select tab.table_shema</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
