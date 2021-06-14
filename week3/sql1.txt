@@ -1,0 +1,15 @@
+show tables;
+
+select * from actor;
+
+select * from address;
+
+select title from film;
+
+select name as 'language' from sakila.language;
+
+select count(store_id) as number_of_stores from store;
+
+select count(staff_id) number_of_staff from staff;
+
+select first_name from staff;
