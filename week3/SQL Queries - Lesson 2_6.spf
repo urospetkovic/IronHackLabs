@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>sakila</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApZcmVudGFsX2lk0iIjMTJfEA9OU011dGFi
+			bGVTdHJpbmejMTMnWE5TU3RyaW5n0iIjNTZeTlNNdXRhYmxlQXJy
+			YXmjNTcnV05TQXJyYXnSIiMmOaImJwAIABEAGgAkACkAMgA3AEkA
+			TABRAFMAYQBnAG4AdgCBAIgAjACOAJAAkgCWAJgAmgCcAJ4AowCo
+			AK0A1gDdAN4A3wDhAOYA8QD6ARABFAEhASoBLwExATMBNQE6AUQB
+			RgFQAVUBZwFrAXQBeQGIAYwBlAGZAAAAAAAAAgEAAAAAAAAAOgAA
+			AAAAAAAAAAAAAAAAAZw=
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1227, 774}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>#1
+select distinct(release_year) from film
+#2
+select title from film
+where title like '%ARMAGEDDON%'
+#3
+select title from film
+where title like '%APOLLO'
+#4
+select title, length from film
+order by length DESC
+limit 10;
+#5
+select title, special_features from film
+where special_features like '%Behind the Scenes%';
+#6
+alter table staff
+drop column picture;
+#7
+insert into staff(staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update) 
+select customer_id,
+first_name, last_name,
+address_id, email, store_id, active,
+'TAMMY' as username, 'SDFSDF' as password, '2021-06-15' as last_update
+from `customer`
+where first_name = 'TAMMY' and last_name='SANDERS';
+#8
+show columns from rental;
+insert into rental (rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update)
+select '1002' as rental_id, '2021-06-15' as rental_date, customer_id '2021-06-15' as last_update from sakila.customer
+where first_name = 'CHARLOTTE' and last_name = 'HUNTER'
+;
+# i can't anymore my eyes are hurting :(
+</string>
+			<key>table</key>
+			<string>rental</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>insert into rental (rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update)
+select customer_id from sakila.customer
+where first_name = 'CHARLOTTE' and last_name = 'HUNTER'</string>
+		<string>#8
+show columns from rental</string>
+		<string>insert into staff(staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update) 
+select customer_id,
+first_name, last_name,
+address_id, email, store_id, active,
+'TAMMY' as username, 'SDFSDF' as password, '2021-06-15' as last_update
+from `customer`
+where first_name = 'TAMMY' and last_name='SANDERS'</string>
+		<string>insert into staff(staff_id, first_name, last_name, address_id, email, store_id, active) 
+select customer_id,
+first_name, last_name,
+address_id, email, store_id, active
+from `customer`
+where first_name = 'TAMMY' and last_name='SANDERS'</string>
+		<string>#7
+show columns from staff</string>
+		<string>insert into staff(staff_id, first_name, last_name, address_id, email, store_id, active) 
+select * from `customer`
+where first_name = 'TAMMY' and last_name='SANDERS'</string>
+		<string>insert into staff(staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update) 
+select * from `customer`
+where first_name = 'TAMMY' and last_name='SANDERS'</string>
+		<string>insert into `staff`('staff_id', 'first_name', 'last_name', 'address_id', 'email', 'store_id', 'active', 'username', 'password', 'last_update') 
+select * from `customer`
+where first_name = 'TAMMY' and last_name='SANDERS'</string>
+		<string>#7
+show table staff</string>
+		<string>#7
+select columns from staff</string>
+		<string>#6
+alter table staff
+drop column picture</string>
+		<string>#5
+select title, special_features from film
+where special_features like '%Behind the Scenes%'</string>
+		<string>#5
+select special_features from film
+where special_features like '%Behind the Scenes%'</string>
+		<string>#5
+select special_features from film</string>
+		<string>#4
+select title, length from film
+order by length DESC
+limit 10</string>
+		<string>#4
+select title, length from film
+order by length
+limit 10</string>
+		<string>#4
+select length from film
+order by length
+limit 10</string>
+		<string>#3
+select title from film
+where title like '%APOLLO'</string>
+		<string>#2
+select title from film
+where title like '%ARMAGEDDON%'</string>
+		<string>#2
+select title from film
+where title like 'ARMAGEDDON'</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

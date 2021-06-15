@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>sakila</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGvEA8LDBkaGxwdIyQlLDA0ODxVJG51bGzTDQ4PEBQYV05T
+			LmtleXNaTlMub2JqZWN0c1YkY2xhc3OjERITgAKAA4AEoxUWF4AF
+			gAaACoAOVHR5cGVUcm93c1RrZXlzXxAmU2VsZWN0aW9uRGV0YWls
+			VHlwZVByaW1hcnlLZXllZERldGFpbHPTDQ4PHiAioR+AB6EhgAiA
+			CVExCdImJygpWiRjbGFzc25hbWVYJGNsYXNzZXNfEBNOU011dGFi
+			bGVEaWN0aW9uYXJ5oygqK1xOU0RpY3Rpb25hcnlYTlNPYmplY3TS
+			Dg8tL6EugAuADdIPMTIzWU5TLnN0cmluZ4AMWXJlbnRhbF9pZNIm
+			JzU2XxAPTlNNdXRhYmxlU3RyaW5nozU3K1hOU1N0cmluZ9ImJzk6
+			Xk5TTXV0YWJsZUFycmF5ozk7K1dOU0FycmF50iYnKj2iKisACAAR
+			ABoAJAApADIANwBJAEwAUQBTAGUAawByAHoAhQCMAJAAkgCUAJYA
+			mgCcAJ4AoACiAKcArACxANoA4QDjAOUA5wDpAOsA7QDuAPMA/gEH
+			AR0BIQEuATcBPAE+AUABQgFHAVEBUwFdAWIBdAF4AYEBhgGVAZkB
+			oQGmAAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAak=
+			</data>
+			<key>contentSortCol</key>
+			<string>rental_date</string>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1227, 750}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>#1
+select first_name, last_name from actor
+where first_name='Scarlett';
+#2
+select count(film_id) from inventory;
+select count(rental_id) from rental;
+#3
+select min(length) as min_duration, max(length) as max_duration from film;
+#4
+select time_format(sec_to_time(round(avg(length)*60)), '%H:%i') from film;
+#5
+select count(DISTINCT last_name) from actor;
+#6
+select DATEDIFF(max(`last_update`), min(rental_date)) from rental;
+#7
+select rental_date, 
+date_format(rental_date, '%M') as 'month',
+weekday(rental_date) as 'weekend',
+from rental
+limit 20;
+#8
+select rental_date,
+case
+when weekday(rental_date)=5  or weekday(rental_date)=6 then 'weekend'
+else 'workday'
+end
+as 'day_type' from rental;
+#9
+select max(rental_date) from rental;
+
+select count(rental_date) from rental
+where rental_date between '2006-02-01' and '2006-02-14';</string>
+			<key>table</key>
+			<string>rental</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select count(rental_date) from rental
+where rental_date between '2006-02-01' and '2006-02-14'</string>
+		<string>select count(rental_date) from rental
+where rental_date between '2005-07-01' and '2006-02-14'</string>
+		<string>select count(rental_date) from rental
+where rental_date between '2005-09-01' and '2006-02-14'</string>
+		<string>select count(rental_date) from rental
+where rental_date between '2005-10-01' and '2006-02-14'</string>
+		<string>select count(rental_date) from rental
+where rental_date between '2005-11-01' and '2006-02-14'</string>
+		<string>select count(rental_date) from rental
+where rental_date between '2005-12-01' and '2006-02-14'</string>
+		<string>#9
+select max(rental_date) from rental</string>
+		<string>select count(rental_date) from rental
+where rental_date between '2005-01-01' and '2006-02-14'</string>
+		<string>select count(rental_date) from rental
+where rental_date between '2006-01-01' and '2006-02-14'</string>
+		<string>#9
+select count(rental_date) from rental
+where rental_date between '2006-02-01' and '2006-02-03'</string>
+		<string>#9
+select count(rental_date) from rental</string>
+		<string>#8
+select rental_date,
+case
+when weekday(rental_date)=5  or weekday(rental_date)=6 then 'weekend'
+else 'workday'
+end
+as 'day_type' from rental</string>
+		<string>#8
+select weekday(rental_date),
+case
+when weekday(rental_date)=5  or weekday(rental_date)=6 then 'weekend'
+else 'workday'
+end
+as 'day_type' from rental</string>
+		<string>#8
+select weekday(rental_date),
+case
+when weekday(rental_date)=5  then 'weekend'
+end
+as 'day_type' from rental</string>
+		<string>#8
+
+select weekday(rental_date) 
+case
+when weekday(rental_date)=5  then 'weekend'
+end
+as 'day_type' from rental</string>
+		<string>#8
+
+select weekday(rental_date) 
+case
+when weekday(rental_date)=5  then 'weekend'
+
+as 'day_type' from rental</string>
+		<string>#8
+select weekday(rental_date) 
+case
+when weekday(rental_date)=5  then 'day_type'='weekend'
+
+as 'day_type' from rental</string>
+		<string>#8
+select weekday(rental_date) 
+case
+when weekday(rental_date)=5  then 'day_type'='weekend'
+end
+as 'day_type' from rental</string>
+		<string>#8
+select weekday(rental_date) 
+case
+when weekday(rental_date)=5 or weekday(rental_date)=6 then 'day_type'='weekend'
+end
+as 'day_type' from rental</string>
+		<string>#8
+select weekday(rental_date) as 'day_type' from rental
+case
+when weekday(rental_date)=5 or weekday(rental_date)=6 then 'day_type'='weekend'
+end</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>bank</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApaYWNjb3VudF9pZNIiIzEyXxAPTlNNdXRh
+			YmxlU3RyaW5nozEzJ1hOU1N0cmluZ9IiIzU2Xk5TTXV0YWJsZUFy
+			cmF5ozU3J1dOU0FycmF50iIjJjmiJicACAARABoAJAApADIANwBJ
+			AEwAUQBTAGEAZwBuAHYAgQCIAIwAjgCQAJIAlgCYAJoAnACeAKMA
+			qACtANYA3QDeAN8A4QDmAPEA+gEQARQBIQEqAS8BMQEzATUBOgFE
+			AUYBUQFWAWgBbAF1AXoBiQGNAZUBmgAAAAAAAAIBAAAAAAAAADoA
+			AAAAAAAAAAAAAAAAAAGd
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1677, 733}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>select round(avg(amount)) from loan;
+
+select floor(avg(amount)) from loan;
+
+select ceiling(avg(amount)) from loan;
+
+# % modulus / check remainder of a division
+
+# STR func
+# ltrim rtrim left right length upper lower
+
+select lower(A2) as district_name, upper(A3) as region_name from district;
+
+#DATES
+
+select *, convert(date, date) as fulldate from account;
+
+select *, convert(substring_index(issued, ' ', 1), date) as date from card; # first index is 1!!!
+
+
+select *, date_format(convert(substring_index(issued, ' ', 1), date), '%Y, %M, %D') as date from card;
+
+select *, date_format(convert(substring_index(issued, ' ', 1), date), '%d-%m-%Y') as date from card;
+
+select type, card_id, issued,
+date_format(convert(substring_index(issued, ' ', 1), date), '%Y') as year_issued from card
+where type = 'gold'
+order by year_issued;
+
+select type, card_id, issued,
+date_format(convert(substring_index(issued, ' ', 1), date), '%M %D, %Y') as date_issued from card
+where type = 'gold'
+order by issued;
+
+select type, card_id, issued,
+date_format(convert(substring_index(issued, ' ', 1), date), '%d of %M of %Y') as fecha_emision from card
+where type = 'gold'
+order by issued;
+
+select * from bank.order
+where k_symbol is null;
+
+select sum(isnull(card_id)) from bank.card;
+
+select count(*) from trans where amount is null;
+
+select sum(k_symbol='') as k_empty, sum(not  k_symbol='') as k_not_empty from bank.trans;
+
+# create a View
+create or replace view loanstatus as
+select loan_id, amount-payments as bal, duration as term,
+case
+when status='A' then 'good-loan repaid'
+when status='B' then 'defaulf-contract finished'
+when status='C' then 'good-on track'
+else 'in debt-contract runnings'
+end
+as 'status_descr' 
+from loan
+order by status_descr, bal DESC;
+
+# wildcards
+
+select * from district 
+where A3 like 'pra%';
+
+select * from district 
+where A3 regexp 'pra | mo';
+
+select * from trans
+where convert(date, date) between '1993-01-01' and '1993-01-15';
+
+select * from district
+where A2 like 'k%';
+
+select * from district
+where A2 regexp '^k';
+
+# group by
+
+select floor(avg(`amount`)) from loan
+where status = 'A' or status = 'B';
+
+select status, floor(avg(`amount`)) from loan
+group by status
+order by status;
+
+select status, duration, floor(avg(`amount`)) from loan
+group by status, duration
+order by status;
+
+select status, max(`amount`) from loan
+group by status;
+
+select round(avg(`amount`)) as average, k_symbol from bank.order
+where not k_symbol = ''
+group by k_symbol
+order by average;
+
+select count(account_id), district_id from account
+group by district_id
+order by count(account_id);
+</string>
+			<key>table</key>
+			<string>account</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select count(account_id), district_id from account
+group by district_id
+order by count(account_id)</string>
+		<string>select count(account_id) from account
+group by district_id
+order by count(account_id)</string>
+		<string>select count(account_id) from account
+group by district_id</string>
+		<string>select count(account_id) from account
+group by district</string>
+		<string>select count(A4) from bank.district
+group by district</string>
+		<string>select sum(A4) from bank.district
+group by bank.district</string>
+		<string>select sum(A4) from district
+group by bank.district</string>
+		<string>select sum(A4) from district
+group by district</string>
+		<string>select sum(*) from district
+group by district</string>
+		<string>select round(avg(`amount`)) as average, k_symbol from bank.order
+where not k_symbol = ''
+group by k_symbol
+order by average</string>
+		<string>select round(avg(`amount`)), k_symbol from bank.order
+where not k_symbol = ''
+group by k_symbol</string>
+		<string>select round(avg(`amount`)), k_symbol from bank.order
+where not k_symbol = ''</string>
+		<string>select round(avg(k_symbol)) from bank.order
+where not k_symbol = ''</string>
+		<string>select avg(k_symbol) from bank.order
+where not k_symbol = ''</string>
+		<string>select floor(avg(k_symbol)) from bank.order
+where not k_symbol = ''</string>
+		<string>select floor(avg(k_symbol)) from bank.order
+where not k_symbol = ' '</string>
+		<string>select floor(avg(k_symbol)) from order
+where not k_symbol = ' '</string>
+		<string>select floor(avg(k_symbol)) from order
+where k_symbol not =' '</string>
+		<string>select floor(avg(k_symbol)) from order
+where k_symbol is not ' '</string>
+		<string>select status, max(`amount`) from loan
+group by status</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

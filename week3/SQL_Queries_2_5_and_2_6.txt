@@ -1,0 +1,70 @@
+2.5
+
+#1
+select first_name, last_name from actor
+where first_name='Scarlett';
+#2
+select count(film_id) from inventory;
+select count(rental_id) from rental;
+#3
+select min(length) as min_duration, max(length) as max_duration from film;
+#4
+select time_format(sec_to_time(round(avg(length)*60)), '%H:%i') from film;
+#5
+select count(DISTINCT last_name) from actor;
+#6
+select DATEDIFF(max(`last_update`), min(rental_date)) from rental;
+#7
+select rental_date, 
+date_format(rental_date, '%M') as 'month',
+weekday(rental_date) as 'weekend',
+from rental
+limit 20;
+#8
+select rental_date,
+case
+when weekday(rental_date)=5  or weekday(rental_date)=6 then 'weekend'
+else 'workday'
+end
+as 'day_type' from rental;
+#9
+select max(rental_date) from rental;
+
+select count(rental_date) from rental
+where rental_date between '2006-02-01' and '2006-02-14';
+
+2.6
+
+#1
+select distinct(release_year) from film
+#2
+select title from film
+where title like '%ARMAGEDDON%'
+#3
+select title from film
+where title like '%APOLLO'
+#4
+select title, length from film
+order by length DESC
+limit 10;
+#5
+select title, special_features from film
+where special_features like '%Behind the Scenes%';
+#6
+alter table staff
+drop column picture;
+#7
+insert into staff(staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update) 
+select customer_id,
+first_name, last_name,
+address_id, email, store_id, active,
+'TAMMY' as username, 'SDFSDF' as password, '2021-06-15' as last_update
+from `customer`
+where first_name = 'TAMMY' and last_name='SANDERS';
+#8
+show columns from rental;
+insert into rental (rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update)
+select '1002' as rental_id, '2021-06-15' as rental_date, customer_id '2021-06-15' as last_update from sakila.customer
+where first_name = 'CHARLOTTE' and last_name = 'HUNTER'
+;
+# i can't anymore my eyes are hurting :(
