@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>sakila</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApXZmlsbV9pZNIiIzEyXxAPTlNNdXRhYmxl
+			U3RyaW5nozEzJ1hOU1N0cmluZ9IiIzU2Xk5TTXV0YWJsZUFycmF5
+			ozU3J1dOU0FycmF50iIjJjmiJicACAARABoAJAApADIANwBJAEwA
+			UQBTAGEAZwBuAHYAgQCIAIwAjgCQAJIAlgCYAJoAnACeAKMAqACt
+			ANYA3QDeAN8A4QDmAPEA+gEQARQBIQEqAS8BMQEzATUBOgFEAUYB
+			TgFTAWUBaQFyAXcBhgGKAZIBlwAAAAAAAAIBAAAAAAAAADoAAAAA
+			AAAAAAAAAAAAAAGa
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1212, 735}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>#1
+select last_name from actor
+group by last_name
+having count(`last_name`)=1;
+#2
+select last_name from actor
+group by last_name
+having count(`last_name`)&gt;1;
+#3
+select count(rental_id), staff_id from rental
+group by staff_id;
+#4
+select count(film_id), release_year from `film`
+group by release_year;
+#5
+select count(film_id), rating from film
+group by rating
+order by count(film_id);
+#6
+select rating, round(avg(length), 2) as average_length from film
+group by rating
+order by average_length;
+#7
+select rating, round(avg(length), 2) as average_length from film
+group by rating
+having average_length&gt;=120
+order by average_length;
+
+
+</string>
+			<key>table</key>
+			<string>film</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>#7
+select rating, round(avg(length), 2) as average_length from film
+group by rating
+having average_length&gt;=120
+order by average_length</string>
+		<string>#6
+select rating, round(avg(length), 2) as average_length from film
+group by rating
+order by average_length</string>
+		<string>#6
+select count(film_id), rating, round(avg(length), 2) as average_length from film
+group by rating
+order by average_length</string>
+		<string>#6
+select count(film_id), rating, round(avg(length), 2) as average_length from film
+group by rating
+order by count(film_id)</string>
+		<string>#6
+select count(film_id), rating, round(avg(length), 2) as average length from film
+group by rating
+order by count(film_id)</string>
+		<string>#6
+select count(film_id), rating, round(avg(length), 2) from film
+group by rating
+order by count(film_id)</string>
+		<string>#5
+select count(film_id), rating from film
+group by rating
+order by count(film_id)</string>
+		<string>#5
+select count(film_id), rating from film
+group by rating</string>
+		<string>#4
+select count(film_id), release_year from `film`
+group by release_year</string>
+		<string>#4
+select count(film_id) from `film`
+group by release_year</string>
+		<string>#3
+select count(rental_id), staff_id from rental
+group by staff_id</string>
+		<string>#3
+select sum(rental_id), staff_id from rental
+group by staff_id</string>
+		<string>#3
+select sum(rental_id) from rental
+group by staff_id</string>
+		<string>#2
+select last_name from actor
+group by last_name
+having count(`last_name`)&gt;1</string>
+		<string>#1
+select last_name from actor
+group by last_name
+having count(`last_name`)=1</string>
+		<string>select last_name from actor
+group by last_name
+having count(`last_name`)=1</string>
+		<string>select count(distinct(last_name)), last_name from actor
+group by last_name</string>
+		<string>select count(distinct(last_name)), last_name from actor
+#group by last_name</string>
+		<string>select count(distinct(last_name)) from actor
+group by last_name</string>
+		<string>select count(distinct(last_name)) from actor
+#group by last_name</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

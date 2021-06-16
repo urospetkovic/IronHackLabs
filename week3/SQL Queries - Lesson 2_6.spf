@@ -58,19 +58,15 @@
 			<data>
 			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
 			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
-			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
-			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
-			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
-			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
-			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
-			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
-			Li9ZTlMuc3RyaW5ngApZcmVudGFsX2lk0iIjMTJfEA9OU011dGFi
-			bGVTdHJpbmejMTMnWE5TU3RyaW5n0iIjNTZeTlNNdXRhYmxlQXJy
-			YXmjNTcnV05TQXJyYXnSIiMmOaImJwAIABEAGgAkACkAMgA3AEkA
-			TABRAFMAYQBnAG4AdgCBAIgAjACOAJAAkgCWAJgAmgCcAJ4AowCo
-			AK0A1gDdAN4A3wDhAOYA8QD6ARABFAEhASoBLwExATMBNQE6AUQB
-			RgFQAVUBZwFrAXQBeQGIAYwBlAGZAAAAAAAAAgEAAAAAAAAAOgAA
-			AAAAAAAAAAAAAAAAAZw=
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
 			</data>
 			<key>contentSortColIsAsc</key>
 			<true/>
@@ -80,19 +76,19 @@
 			<true/>
 			<key>queries</key>
 			<string>#1
-select distinct(release_year) from film
+select distinct(release_year) from film;
 #2
 select title from film
-where title like '%ARMAGEDDON%'
+where title like '%ARMAGEDDON%';
 #3
 select title from film
-where title like '%APOLLO'
+where title like '%APOLLO';
 #4
 select title, length from film
 order by length DESC
 limit 10;
 #5
-select title, special_features from film
+select count(title) from film
 where special_features like '%Behind the Scenes%';
 #6
 alter table staff
@@ -107,14 +103,35 @@ from `customer`
 where first_name = 'TAMMY' and last_name='SANDERS';
 #8
 show columns from rental;
-insert into rental (rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update)
-select '1002' as rental_id, '2021-06-15' as rental_date, customer_id '2021-06-15' as last_update from sakila.customer
+
+select film_id from film
+where title='ACADEMY DINOSAUR';
+
+select inventory_id from inventory
+where film_id = 1;
+
+insert into rental (rental_id, rental_date, inventory_id, customer_id, staff_id)
+select '1002' as rental_id, curdate() as rental_date, customer_id
+from sakila.customer
 where first_name = 'CHARLOTTE' and last_name = 'HUNTER'
 ;
 # i can't anymore my eyes are hurting :(
+
+#9 
+create table deleted_user(
+customer_id int unique not null,
+elmail varchar(255) unique not null,
+delete_date date);
+
+insert into deleted_user
+select customer_id, email, curdate()
+from `customer`where active = 0;
+
+delete from `customer`
+where active = 0;
 </string>
 			<key>table</key>
-			<string>rental</string>
+			<string>deleted_user</string>
 			<key>view</key>
 			<string>SP_VIEW_CUSTOMQUERY</string>
 			<key>windowVerticalDividerPosition</key>
@@ -129,6 +146,43 @@ where first_name = 'CHARLOTTE' and last_name = 'HUNTER'
 	<array/>
 	<key>queryHistory</key>
 	<array>
+		<string>delete from `customer`
+where active = 0</string>
+		<string>insert into deleted_user
+select customer_id, email, curdate()
+from `customer`where active = 0</string>
+		<string># i can't anymore my eyes are hurting :(
+
+#9 
+create table deleted_user(
+customer_id int unique not null,
+elmail varchar(255) unique not null,
+delete_date date)</string>
+		<string>select film_id from film
+where title='ACADEMY DINOSAUR'</string>
+		<string>select film_id from inventory
+where title='ACADEMY DINOSAUR'</string>
+		<string>select inventory_id from inventory
+where film_id = 1</string>
+		<string>select inventory_id from inventory
+where film_id is 1</string>
+		<string>slect inventory_id from inventory
+where film_id is 1</string>
+		<string>#5
+select count(title) from film
+where special_features like '%Behind the Scenes%'</string>
+		<string>#4
+select title, length from film
+order by length DESC
+limit 10</string>
+		<string>#2
+select title from film
+where title like '%ARMAGEDDON%'</string>
+		<string>#5
+select title, special_features from film
+where special_features like '%Behind the Scenes%'</string>
+		<string>#1
+select distinct(release_year) from film</string>
 		<string>insert into rental (rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update)
 select customer_id from sakila.customer
 where first_name = 'CHARLOTTE' and last_name = 'HUNTER'</string>
@@ -155,45 +209,6 @@ where first_name = 'TAMMY' and last_name='SANDERS'</string>
 		<string>insert into staff(staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update) 
 select * from `customer`
 where first_name = 'TAMMY' and last_name='SANDERS'</string>
-		<string>insert into `staff`('staff_id', 'first_name', 'last_name', 'address_id', 'email', 'store_id', 'active', 'username', 'password', 'last_update') 
-select * from `customer`
-where first_name = 'TAMMY' and last_name='SANDERS'</string>
-		<string>#7
-show table staff</string>
-		<string>#7
-select columns from staff</string>
-		<string>#6
-alter table staff
-drop column picture</string>
-		<string>#5
-select title, special_features from film
-where special_features like '%Behind the Scenes%'</string>
-		<string>#5
-select special_features from film
-where special_features like '%Behind the Scenes%'</string>
-		<string>#5
-select special_features from film</string>
-		<string>#4
-select title, length from film
-order by length DESC
-limit 10</string>
-		<string>#4
-select title, length from film
-order by length
-limit 10</string>
-		<string>#4
-select length from film
-order by length
-limit 10</string>
-		<string>#3
-select title from film
-where title like '%APOLLO'</string>
-		<string>#2
-select title from film
-where title like '%ARMAGEDDON%'</string>
-		<string>#2
-select title from film
-where title like 'ARMAGEDDON'</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>

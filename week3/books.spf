@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>books</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGvEA8LDBkaGxwdIyQlLDA0ODxVJG51bGzTDQ4PEBQYV05T
+			LmtleXNaTlMub2JqZWN0c1YkY2xhc3OjERITgAKAA4AEoxUWF4AF
+			gAaACoAOVHR5cGVUcm93c1RrZXlzXxAmU2VsZWN0aW9uRGV0YWls
+			VHlwZVByaW1hcnlLZXllZERldGFpbHPTDQ4PHiAioR+AB6EhgAiA
+			CVE1CdImJygpWiRjbGFzc25hbWVYJGNsYXNzZXNfEBNOU011dGFi
+			bGVEaWN0aW9uYXJ5oygqK1xOU0RpY3Rpb25hcnlYTlNPYmplY3TS
+			Dg8tL6EugAuADdIPMTIzWU5TLnN0cmluZ4AMV2Jvb2tfaWTSJic1
+			Nl8QD05TTXV0YWJsZVN0cmluZ6M1NytYTlNTdHJpbmfSJic5Ol5O
+			U011dGFibGVBcnJheaM5OytXTlNBcnJhedImJyo9oiorAAgAEQAa
+			ACQAKQAyADcASQBMAFEAUwBlAGsAcgB6AIUAjACQAJIAlACWAJoA
+			nACeAKAAogCnAKwAsQDaAOEA4wDlAOcA6QDrAO0A7gDzAP4BBwEd
+			ASEBLgE3ATwBPgFAAUIBRwFRAVMBWwFgAXIBdgF/AYQBkwGXAZ8B
+			pAAAAAAAAAIBAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAGn
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1227, 774}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>drop table authors;
+drop table books;
+
+create table authors(
+author_id int auto_increment not null, 
+name varchar(20) default null,
+country varchar(20) default null,
+primary key (author_id)
+);
+
+create table books
+(book_id INT AUTO_INCREMENT NOT NULL, 
+author_id INT NOT NULL, 
+bookname VARCHAR(60), 
+PRIMARY KEY (book_id),
+KEY idx_fk_author_id (author_id),
+CONSTRAINT fk_author_id FOREIGN KEY (author_id)
+REFERENCES authors(author_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+insert into authors (name)
+values ('George Orvel');
+
+insert into authors (name)
+values ('Nele Karajlic'), ('Umberto Eco'), ('Franz Kafka');
+
+insert into authors (name, country)
+values ('Orhan Pamuk', 'Turkey'), ('Borislav Pekić', 'Serbia');
+
+update authors set country='Earth'
+where country is null;
+# where author_id in (1, 2, 3); # for sql server, if there are restraints
+
+alter table books 
+modify bookname varchar(70);
+
+insert into books (bookname, author_id)
+values 
+('Atlantida', 6), 
+('Other Colours', 5), 
+('Zeichen Einführung in einen Begriff und seine Geschichte', 3),
+('Der Prozess und andere Erzählungen', 4),
+('Solunska 28', 2),
+('1984', 1);
+
+alter table books
+add column I_have_read_it boolean default false;  
+
+update books
+set I_have_read_it = true
+where book_id in (1, 5, 6);
+
+update authors
+set name = 'Dr. Nele Karajlić'
+where author_id = 2;
+
+select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+join authors a # inner outer lefr right
+on b.author_id = a.author_id;
+
+select * from books right join authors using(author_id);
+
+insert into authors (name, country)
+values ('Žika Obretković', 'Serbia');</string>
+			<key>table</key>
+			<string>books</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select * from books right join authors using(author_id)</string>
+		<string>select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+join authors a # inner outer lefr right
+on b.author_id = a.author_id</string>
+		<string>select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+left join authors a # inner outer lefr right
+on b.author_id = a.author_id</string>
+		<string>select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+outer join authors a # inner outer lefr right
+on b.author_id = a.author_id</string>
+		<string>select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+right join authors a
+on b.author_id = a.author_id</string>
+		<string>select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+join authors a
+on b.author_id = a.author_id</string>
+		<string>insert into authors (name, country)
+values ('Žika Obretković', 'Serbia')</string>
+		<string>select b.bookname, a.name, a.country, d.I_have_read_it 
+from books b
+join authors a
+on b.author_id = a.author_id</string>
+		<string>update authors
+set name = 'Dr. Nele Karajlić'
+where author_id = 2</string>
+		<string>select * 
+from books b
+join authors a
+on b.author_id = a.author_id</string>
+		<string>update books
+set I_have_read_it = true
+where book_id in (1, 5, 6)</string>
+		<string>update books
+set I_have_read_it = true
+where bookname = 'Atlantida', '1984', 'Solunska 28'</string>
+		<string>update books
+set I_have_read_it = true
+where bookname = 'Atlantida'</string>
+		<string>alter table books
+add column I_have_read_it boolean default false</string>
+		<string>insert into books (bookname, author_id)
+values 
+('Atlantida', 6), 
+('Other Colours', 5), 
+('Zeichen Einführung in einen Begriff und seine Geschichte', 3),
+('Der Prozess und andere Erzählungen', 4),
+('Solunska 28', 2),
+('1984', 1)</string>
+		<string>create table books
+(book_id INT AUTO_INCREMENT NOT NULL, 
+author_id INT NOT NULL, 
+bookname VARCHAR(60), 
+PRIMARY KEY (book_id),
+KEY idx_fk_author_id (author_id),
+CONSTRAINT fk_author_id FOREIGN KEY (author_id)
+REFERENCES authors(author_id) ON DELETE RESTRICT ON UPDATE CASCADE
+)</string>
+		<string>drop table books</string>
+		<string># where author_id in (1, 2, 3); # for sql server, if there are restraints
+
+alter table books 
+modify bookname varchar(60)</string>
+		<string>insert into books (bookname, author_id)
+values 
+('Atlantida', 6), 
+('Other Colours', 5), 
+('Zeichen Einführung in einen Begriff und seine Geschichte', 3),
+('Der Prozess und andere Erzählungen', 4)
+('Solunska 28', 2)
+('1984', 1)</string>
+		<string>create table books
+(book_id INT AUTO_INCREMENT NOT NULL, 
+author_id INT NOT NULL, 
+bookname VARCHAR(50), 
+PRIMARY KEY (book_id),
+KEY idx_fk_author_id (author_id),
+CONSTRAINT fk_author_id FOREIGN KEY (author_id)
+REFERENCES authors(author_id) ON DELETE RESTRICT ON UPDATE CASCADE
+)</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

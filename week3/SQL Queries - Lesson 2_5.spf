@@ -129,6 +129,8 @@ where rental_date between '2006-02-01' and '2006-02-14';</string>
 	<array/>
 	<key>queryHistory</key>
 	<array>
+		<string>#4
+select time_format(sec_to_time(round(avg(length)*60)), '%H:%i') from film</string>
 		<string>select count(rental_date) from rental
 where rental_date between '2006-02-01' and '2006-02-14'</string>
 		<string>select count(rental_date) from rental
@@ -204,11 +206,6 @@ case
 when weekday(rental_date)=5 or weekday(rental_date)=6 then 'day_type'='weekend'
 end
 as 'day_type' from rental</string>
-		<string>#8
-select weekday(rental_date) as 'day_type' from rental
-case
-when weekday(rental_date)=5 or weekday(rental_date)=6 then 'day_type'='weekend'
-end</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>bank</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1227, 750}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>select a.frequency, a.district_id, l.loan_id from account a
+join loan l
+on a.account_id = l.account_id
+where l.duration = 12 ;
+
+select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by district_name, district_id
+having round(avg(l.amount)) &gt; 100000
+order by average DESC;
+
+# rule on having - if you use an aggregate field as a condition MUST use having NOT where
+
+
+
+</string>
+			<key>table</key>
+			<string>district</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select a.district_id as location,  sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+/* join district d
+on a.district_id = d.A1 */
+join loan l
+on a.account_id = l.account_id
+group by district_name, district_id
+having round(avg(l.amount)) &gt; 100000
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+/* join district d
+on a.district_id = d.A1 */
+join loan l
+on a.account_id = l.account_id
+group by district_name, district_id
+having round(avg(l.amount)) &gt; 100000
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by district_name, district_id
+having round(avg(l.amount)) &gt; 100000
+
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+#having round(avg(l.amount)) &gt; 100000
+group by district_name, district_id
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+having round(avg(l.amount)) &gt; 100000
+group by district_name, district_id
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by district_name, district_id
+where round(avg(l.amount)) &gt; 100000
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by district_name, district_id
+where round(avg(l.amount)) &gt; 100000
+
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+where round(avg(l.amount)) &gt; 100000
+group by district_name, district_id
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+where average &gt; 100000
+group by district_name, district_id
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by district_name, district_id
+order by average DESC</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by district_name, district_id
+order by district_id</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by distrist_name, district_id
+order by district_id</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by distrist_name, `district_id`
+order by district_id</string>
+		<string>select a.district_id as location, d.A2 as district_name, sum(l.amount) as total, round(avg(l.amount)) as average 
+from account a
+join district d
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by `district_id`
+order by district_id</string>
+		<string>select a.district_id as location, sum(l.amount) as total, round(avg(l.amount)) as average from account a
+join loan l
+on a.account_id = l.account_id
+group by `district_id`
+order by district_id</string>
+		<string>select * from books right join authors using(author_id)</string>
+		<string>select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+join authors a # inner outer lefr right
+on b.author_id = a.author_id</string>
+		<string>select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+left join authors a # inner outer lefr right
+on b.author_id = a.author_id</string>
+		<string>select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+outer join authors a # inner outer lefr right
+on b.author_id = a.author_id</string>
+		<string>select b.bookname, a.name, a.country, b.I_have_read_it 
+from books b
+right join authors a
+on b.author_id = a.author_id</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
