@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>bank</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1683, 572}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>select * from client c
+join district d
+on c.district_id = d.A1
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on dp.account_id = a.account_id
+join loan l
+on l.account_id = a.account_id;
+
+create view clients_and_loans as
+select c.client_id, a.district_id, l.loan_id, a.account_id, d.A2 as district_name, l.amount as amount_of_loan  from client c
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on a.account_id = dp.account_id
+join loan l
+on l.account_id = a.account_id
+join district d
+on d.A1 = a.district_id; 
+
+</string>
+			<key>table</key>
+			<string>clients_and_loans</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select d.A2, sum(l.amount), avg(l.amount) from district d
+join account a
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id
+group by d.A2</string>
+		<string>select d.A2, sum(l.amount), avg(l.amount) from district d
+join account a
+on a.district_id = d.A1
+join loan l
+on a.account_id = l.account_id</string>
+		<string>select sum(amount), district_name from clients_and_loans
+group by district_name</string>
+		<string>select sum(amount_of_loan), district_name from clients_and_loans
+group by district_name</string>
+		<string>select client_id, sum(amount_of_loan), district_name from clients_and_loans
+group by district_name</string>
+		<string>select client_id, sum(amount_of_loan) from clients_and_loans
+group by district_name</string>
+		<string>select client_id, sum(`amount_of_loan`) from clients_and_loans</string>
+		<string>select client_id from clients_and_loans</string>
+		<string>create view clients_and_loans as
+select c.client_id, a.district_id, l.loan_id, a.account_id, d.A2 as district_name, l.amount as amount_of_loan  from client c
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on a.account_id = dp.account_id
+join loan l
+on l.account_id = a.account_id
+join district d
+on d.A1 = a.district_id</string>
+		<string>select c.client_id, a.district_id, l.loan_id, a.account_id, d.A2 as district_name, l.amount as amount_of_loan  from client c
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on a.account_id = dp.account_id
+join loan l
+on l.account_id = a.account_id
+join district d
+on d.A1 = a.district_id</string>
+		<string>select c.client_id, a.district_id, l.loan_id, a.account_id, d.A2 as district_name  from client c
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on a.account_id = dp.account_id
+join loan l
+on l.account_id = a.account_id
+join district d
+on d.A1 = a.district_id</string>
+		<string>select c.client_id, a.district_id, l.loan_id, a.account_id  from client c
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on a.account_id = dp.account_id
+join loan l
+on l.account_id = a.account_id
+join district d
+on d.A1 = a.district_id</string>
+		<string>select c.client_id, a.district_id, l.loan_id, a.account_id,  from client c
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on a.account_id = dp.account_id
+join loan l
+on l.account_id = a.account_id
+join district d
+on d.A1 = a.district_id</string>
+		<string>select * from client c
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on a.account_id = dp.account_id
+join loan l
+on l.account_id = a.account_id</string>
+		<string>select * from client c
+join disp dp
+on c.client_id = dp_client_id
+join account a
+on a.account_id = dp.account_id
+join loan l
+on l.account_id = a.account_id</string>
+		<string>select * from client c
+join district d
+on c.district_id = d.A1
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on dp.account_id = a.account_id
+join loan l
+on l.account_id = a.account_id</string>
+		<string>select * from client c
+join district d
+on c.district_id = d.A1
+join disp dp
+on c.client_id = dp.client_id
+join account a
+on dp.account_id = a.account_id</string>
+		<string>select * from client c
+join district d
+on c.district_id = d.A1
+join disp dp
+on c.client_id = dp.client_id
+join account account
+on dp.account_id = a.account_id</string>
+		<string>select * from client c
+join district d
+on c.district_id = d.A1
+join disp dp
+on c.client_id = dp.client_id
+join account
+on dp.account_id = a.account_id</string>
+		<string>#3
+select count(rental_id), staff_id from rental
+group by staff_id</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

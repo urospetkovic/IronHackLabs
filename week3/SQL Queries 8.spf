@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>sakila</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApXZmlsbV9pZNIiIzEyXxAPTlNNdXRhYmxl
+			U3RyaW5nozEzJ1hOU1N0cmluZ9IiIzU2Xk5TTXV0YWJsZUFycmF5
+			ozU3J1dOU0FycmF50iIjJjmiJicACAARABoAJAApADIANwBJAEwA
+			UQBTAGEAZwBuAHYAgQCIAIwAjgCQAJIAlgCYAJoAnACeAKMAqACt
+			ANYA3QDeAN8A4QDmAPEA+gEQARQBIQEqAS8BMQEzATUBOgFEAUYB
+			TgFTAWUBaQFyAXcBhgGKAZIBlwAAAAAAAAIBAAAAAAAAADoAAAAA
+			AAAAAAAAAAAAAAGa
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1212, 595}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string># SQL Queries 8
+
+#1
+select f.title, f.length, fc.`category_id`,
+rank() over (partition by fc.category_id order by f.length) as 'ranking'
+from film f
+join film_category fc
+on fc.film_id = f.film_id
+where f.length is not null;
+#2
+select title, length, rating,
+dense_rank() over (partition by rating order by length) as 'ranking'
+from film
+where length is not null;
+#3
+select name as category, count(c.category_id) as number_of_films
+from category c
+join film_category fc
+on c.category_id = fc.category_id
+group by c.category_id; 
+#4
+select fa.actor_id, a.first_name, a.last_name, count(fa.film_id) as number_of_films
+from film_actor fa
+join actor a
+on a.actor_id = fa.actor_id
+group by a.actor_id
+order by number_of_films DESC;
+#5
+select c.first_name, c.last_name, count(r.customer_id) as number_of_rented_films
+from customer c
+join rental r
+on c.customer_id = r.customer_id
+group by c.customer_id
+order by number_of_rented_films DESC;
+# BONUS
+select f.title, count(f.film_id) as rentals
+from film f
+join inventory i
+on i.film_id = f.film_id
+join rental r
+on r.inventory_id = i.inventory_id
+group by f.title
+order by rentals DESC;</string>
+			<key>table</key>
+			<string>film</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string># BONUS
+select f.title, count(f.film_id) as rentals
+from film f
+join inventory i
+on i.film_id = f.film_id
+join rental r
+on r.inventory_id = i.inventory_id
+group by f.title
+order by rentals DESC</string>
+		<string># BONUS
+select f.title, count(f.film_id) as rentals
+from film f
+join inventory i
+on i.film_id = f.film_id
+join rental r
+on r.inventory_id = i.inventory_id
+group by f.title
+order by rentals</string>
+		<string># BONUS
+select f.title, count(f.film_id)
+from film f
+join inventory i
+on i.film_id = f.film_id
+join rental r
+on r.inventory_id = i.inventory_id
+group by f.title</string>
+		<string># BONUS
+select f.title, count(f.film_id)
+from film f
+join inventory i
+on i.film_id = f.film_id
+join rental r
+on r.inventory_id = i.inventory_id
+gropu by f.title</string>
+		<string># BONUS
+select f.title, count(f.film_id)
+from film f
+join inventory i
+on i.film_id = f.film_id
+join rental r
+on r.inventory_id = i.inventory_id</string>
+		<string># BONUS
+select f.name, count(f.film_id)
+from film f
+join inventory i
+on i.film_id = f.film_id
+join rental r
+on r.inventory_id = i.inventory_id</string>
+		<string>#5
+select c.first_name, c.last_name, count(r.customer_id) as number_of_rented_films
+from customer c
+join rental r
+on c.customer_id = r.customer_id
+group by c.customer_id
+order by number_of_rented_films DESC</string>
+		<string>#5
+select c.first_name, c.last_name, count(r.customer_id) as number_of_rented_films
+from customer c
+join rental r
+on c.customer_id = r.customer_id
+group by c.customer_id
+order by number_of_rented_films</string>
+		<string>#5
+select c.first_name, c.last_name, count(r.customer_id)
+from customer c
+join rental r
+on c.customer_id = r.customer_id
+group by c.customer_id</string>
+		<string>#5
+select c.first_name, c.last_name, count(r.customer_id)
+from customer c
+join rental r
+on c.customer_id = r.customer_id</string>
+		<string>#5
+select c.first_name, c.last_name, count(r.custumer_id)
+from customer c
+join rental r
+on c.customer_id = r.customer_id</string>
+		<string>#5
+select c.first_name, c.last_name, count(r.costumer_id)
+from customer c
+join rental r
+on c.customer_id = r.customer_id</string>
+		<string>#5
+select c.first_name, c.last.name, count(r.costumer_id)
+from customer c
+join rental r
+on c.customer_id = r.customer_id</string>
+		<string>#3
+select name as category, count(c.category_id) as number_of_films
+from category c
+join film_category fc
+on c.category_id = fc.category_id
+group by c.category_id</string>
+		<string>#2
+select title, length, rating,
+dense_rank() over (partition by rating order by length) as 'ranking'
+from film
+where length is not null</string>
+		<string>#2
+select title, length, rating,
+rank() over (partition by rating order by length) as 'ranking'
+from film
+where length is not null</string>
+		<string>#2
+select f.title, f.length, f.rating,
+rank() over (partition by f.rating order by f.length) as 'ranking'
+from film f
+/* join film_category fc
+on fc.film_id = f.film_id */
+where f.length is not null</string>
+		<string>#2
+select f.title, f.length, f.rating,
+rank() over (partition by frating order by f.length) as 'ranking'
+from film f
+/* join film_category fc
+on fc.film_id = f.film_id */
+where f.length is not null</string>
+		<string># SQL Queries 8
+
+#1
+select f.title, f.length, fc.`category_id`,
+rank() over (partition by fc.category_id order by f.length) as 'ranking'
+from film f
+join film_category fc
+on fc.film_id = f.film_id
+where f.length is not null</string>
+		<string># SQL Queries 8
+
+#1
+select f.title, f.length, fc.`category_id`,
+rank() over (partition by fc.category_id order by f.length) as 'ranking'
+from film f
+
+join film_category fc
+on fc.film_id = f.film_id</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

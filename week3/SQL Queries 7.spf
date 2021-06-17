@@ -125,14 +125,38 @@ order by average_length;
 	<array/>
 	<key>queryHistory</key>
 	<array>
+		<string>#1
+select last_name from actor
+group by last_name
+having count(`last_name`)=1</string>
+		<string>#2
+select last_name from actor
+group by last_name
+having count(`last_name`)&gt;1</string>
+		<string>#3
+select count(rental_id), staff_id from rental
+group by staff_id</string>
+		<string>#3
+select count(rental_id), staff_id, from rental
+group by staff_id</string>
+		<string>#4
+select count(film_id), release_year from `film`
+group by release_year</string>
+		<string>#3
+select count(rental_id), staff_id, staff_name from rental
+group by staff_id</string>
+		<string>#5
+select count(film_id), rating from film
+group by rating
+order by count(film_id)</string>
+		<string>#6
+select rating, round(avg(length), 2) as average_length from film
+group by rating
+order by average_length</string>
 		<string>#7
 select rating, round(avg(length), 2) as average_length from film
 group by rating
 having average_length&gt;=120
-order by average_length</string>
-		<string>#6
-select rating, round(avg(length), 2) as average_length from film
-group by rating
 order by average_length</string>
 		<string>#6
 select count(film_id), rating, round(avg(length), 2) as average_length from film
@@ -152,44 +176,22 @@ group by rating
 order by count(film_id)</string>
 		<string>#5
 select count(film_id), rating from film
-group by rating
-order by count(film_id)</string>
-		<string>#5
-select count(film_id), rating from film
 group by rating</string>
-		<string>#4
-select count(film_id), release_year from `film`
-group by release_year</string>
 		<string>#4
 select count(film_id) from `film`
 group by release_year</string>
-		<string>#3
-select count(rental_id), staff_id from rental
-group by staff_id</string>
 		<string>#3
 select sum(rental_id), staff_id from rental
 group by staff_id</string>
 		<string>#3
 select sum(rental_id) from rental
 group by staff_id</string>
-		<string>#2
-select last_name from actor
-group by last_name
-having count(`last_name`)&gt;1</string>
-		<string>#1
-select last_name from actor
-group by last_name
-having count(`last_name`)=1</string>
 		<string>select last_name from actor
 group by last_name
 having count(`last_name`)=1</string>
 		<string>select count(distinct(last_name)), last_name from actor
 group by last_name</string>
 		<string>select count(distinct(last_name)), last_name from actor
-#group by last_name</string>
-		<string>select count(distinct(last_name)) from actor
-group by last_name</string>
-		<string>select count(distinct(last_name)) from actor
 #group by last_name</string>
 	</array>
 	<key>rdbms_type</key>
