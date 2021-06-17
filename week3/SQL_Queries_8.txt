@@ -6,21 +6,18 @@ rank() over (partition by fc.category_id order by f.length) as 'ranking'
 from film f
 join film_category fc
 on fc.film_id = f.film_id
-where f.length is not null;
-
+where f.length is not null and length<>0;
 #2
 select title, length, rating,
 dense_rank() over (partition by rating order by length) as 'ranking'
 from film
-where length is not null;
-
+where length is not null and length<>0;
 #3
 select name as category, count(c.category_id) as number_of_films
 from category c
 join film_category fc
 on c.category_id = fc.category_id
-group by c.category_id;
-
+group by c.category_id; 
 #4
 select fa.actor_id, a.first_name, a.last_name, count(fa.film_id) as number_of_films
 from film_actor fa
@@ -28,7 +25,6 @@ join actor a
 on a.actor_id = fa.actor_id
 group by a.actor_id
 order by number_of_films DESC;
-
 #5
 select c.first_name, c.last_name, count(r.customer_id) as number_of_rented_films
 from customer c
@@ -36,7 +32,6 @@ join rental r
 on c.customer_id = r.customer_id
 group by c.customer_id
 order by number_of_rented_films DESC;
-
 # BONUS
 select f.title, count(f.film_id) as rentals
 from film f
