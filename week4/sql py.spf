@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>sakila</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGtCwwZGhscHSEoLDA0OFUkbnVsbNMNDg8QFBhXTlMua2V5
+			c1pOUy5vYmplY3RzViRjbGFzc6MREhOAAoADgASjFRYXgAWABoAI
+			gAxUdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rpb25EZXRhaWxUeXBl
+			UHJpbWFyeUtleWVkRGV0YWlsc9MNDg8eHyCgoIAH0iIjJCVaJGNs
+			YXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJsZURpY3Rpb25hcnmj
+			JCYnXE5TRGljdGlvbmFyeVhOU09iamVjdNIODykroSqACYAL0g8t
+			Li9ZTlMuc3RyaW5ngApaY291bnRyeV9pZNIiIzEyXxAPTlNNdXRh
+			YmxlU3RyaW5nozEzJ1hOU1N0cmluZ9IiIzU2Xk5TTXV0YWJsZUFy
+			cmF5ozU3J1dOU0FycmF50iIjJjmiJicACAARABoAJAApADIANwBJ
+			AEwAUQBTAGEAZwBuAHYAgQCIAIwAjgCQAJIAlgCYAJoAnACeAKMA
+			qACtANYA3QDeAN8A4QDmAPEA+gEQARQBIQEqAS8BMQEzATUBOgFE
+			AUYBUQFWAWgBbAF1AXoBiQGNAZUBmgAAAAAAAAIBAAAAAAAAADoA
+			AAAAAAAAAAAAAAAAAAGd
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1223.5, 736}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>create or replace view payment_by_date AS
+select date_format(payment_date, '%m') as month,
+date_format(payment_date, '%Y') as year_payed,
+amount
+from payment
+order by month, year_payed DESC
+;
+
+select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month, year
+order by year, month;
+
+select country, sum(`amount`) as total
+from `country`
+join city using(country_id)
+join `address` using(`city_id`)
+join customer using (address_id)
+join payment using(customer_id)
+group by country_id
+order by total DESC ;
+</string>
+			<key>table</key>
+			<string>country</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>202.5</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select country, sum(`amount`) as total
+from `country`
+join city using(country_id)
+join `address` using(`city_id`)
+join customer using (address_id)
+join payment using(customer_id)
+group by country_id
+order by total DESC</string>
+		<string>select country_id, sum(`amount`)
+from `country`
+join city using(country_id)
+join `address` using(`city_id`)
+join customer using (address_id)
+join payment using(customer_id)
+group by country_id</string>
+		<string>select country_id, sum(payment)
+from `country`
+join city using(country_id)
+join `address` using(`city_id`)
+join customer using (address_id)
+join payment using(customer_id)
+group by country_id</string>
+		<string>select country_id
+from `country`
+join city using(country_id)
+join `address` using(`city_id`)
+join customer using (address_id)
+join payment using(customer_id)</string>
+		<string>select country_id
+from `country`
+join city using(country_id)
+join `address` using(`city_id`)
+join customer using (address_id)</string>
+		<string>select country_id
+from `country`
+join city using(country_id)
+join `address` using(`city_id`)</string>
+		<string>select country_id
+from `country`
+join city using(country_id)</string>
+		<string>select country_id
+from `country`
+join city using(coutry_id)</string>
+		<string>select country_id
+from `country`</string>
+		<string>select county_id
+from `country`</string>
+		<string>select state_id
+from state</string>
+		<string>select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month, year
+order by year, month</string>
+		<string>select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month, year
+order by month, year</string>
+		<string>select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month, year
+order by month</string>
+		<string>select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month
+order by month</string>
+		<string>select month, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month
+order by month</string>
+		<string>select month, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+amount
+from payment
+order by month DESC) t
+group by month
+order by month</string>
+		<string>select month, sum(amount)
+from 
+(
+select date_format(payment_date, '%M-%Y') as month,
+amount
+from payment
+order by month DESC) t
+group by month
+order by month</string>
+		<string>select month, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+amount
+from payment
+order by month DESC
+)
+group by month
+order by month</string>
+		<string>select month, sum(amount)
+from (select date_format(payment_date, '%M') as month,
+amount
+from payment
+order by month DESC) as t
+group by month
+order by month</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

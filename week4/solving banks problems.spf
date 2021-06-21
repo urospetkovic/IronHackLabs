@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>bank</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWV05TLmtleXNaTlMu
+			b2JqZWN0c1YkY2xhc3OiERKAAoADohQVgASABYAHVHR5cGVUcm93
+			c18QHVNlbGVjdGlvbkRldGFpbFR5cGVOU0luZGV4U2V00hsPHB1c
+			TlNSYW5nZUNvdW50EACABtIfICEiWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNaTlNJbmRleFNldKIjJFpOU0luZGV4U2V0WE5TT2JqZWN00h8g
+			JidcTlNEaWN0aW9uYXJ5oiYkAAgAEQAaACQAKQAyADcASQBMAFEA
+			UwBcAGIAaQBxAHwAgwCGAIgAigCNAI8AkQCTAJgAnQC9AMIAzwDR
+			ANMA2ADjAOwA9wD6AQUBDgETASAAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1223.5, 726}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>table</key>
+			<string>monthly_active_users</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>202.5</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select *, round((active_users-prev_month) / active_users*100, 2) as perchange
+from monthonmonth_users
+where prev_month is not null</string>
+		<string>select *, round(active_users-prev_month/active_users*100, 2) as perchange
+from monthonmonth_users
+where prev_month is not null</string>
+		<string>select round(active_users-prev_month/active_users*100, 2) as perchange
+from monthonmonth_users
+where prev_month is not null</string>
+		<string>select round(active_users-prev_month/active_users*100, 2) as perchange
+from monthly_active_users
+where prev_month is not null</string>
+		<string>select round(active_users-prev_month/active_users*100, 2) as perchange, *
+from monthly_active_users
+where prev_month is not null</string>
+		<string># apply the LAG func for month-to-month comparison
+# active_users table and create new col with the prev month
+create or replace view monthonmonth_users as
+select *, lag(active_users, 1) over() as prev_month
+from monthly_active_users</string>
+		<string># apply the LAG func for month-to-month comparison
+# active_users table and create new col with the prev month
+
+select *, lag(active_users, 1) over() as prev_month
+from monthly_active_users</string>
+		<string># view - year month unique account_id
+
+create or replace view monthly_active_users as
+select activitymonth, activityyear, count(distinct `account_id`) as active_users
+from user_activity
+group by activitymonth, activityyear
+order by activityyear, activitymonth</string>
+		<string># apply the LAG func for month-to-month comparison
+# active_users table and create new col with the prev month
+
+select *, lag(active_users, 1) over() as prev_month
+from active_users</string>
+		<string># apply the LAG func for month-to-month comparison
+# active_users table and create new col with the prev month
+
+select *, lag(active_users, 1) over() as prev_month
+from monthy_active_users</string>
+		<string># view - year month unique account_id
+
+create or replace view monthly_active_users as
+select activitymonth, activityyear, count(distinct `account_id`) as active_users
+from user_activity
+group by activitymonth, activityyear
+order by activitymonth, activityyear</string>
+		<string># view - year month unique account_id
+
+create view monthly_active_users as
+select activitymonth, activityyear, count(distinct `account_id`)
+from user_activity
+group by activitymonth, activityyear
+order by activitymonth, activityyear</string>
+		<string># view - year month unique account_id
+
+create view monthly_actice_users as
+select activitymonth, activityyear, count(distinct `account_id`)
+from user_activity
+group by activitymonth, activityyear</string>
+		<string># view - year month unique account_id
+
+create view monthly_actice_users as
+select activityonth, activityyear, count(distinct `account_id`)
+from user_activity
+group by activitymonth, activityyear</string>
+		<string># month on month comparison, unique account making trans
+# view for each trans, account, date
+create view user_activity as
+select account_id, 
+date_format(convert(date, date), '%m') as activitymonth,
+date_format(convert(date, date), '%Y') as activityyear,
+date_format(convert(date, date), '%m-%Y') as activitymonthyear
+from TRANS</string>
+		<string>drop view user_activity</string>
+		<string>delete view user_activity</string>
+		<string># month on month comparison, unique account making trans
+# view for each trans, account, date
+create view user_activity as
+select account_id, 
+date_format(convert(date, date), '%m') as activitymonth,
+date_format(convert(date, date), '%You') as activityyear,
+date_format(convert(date, date), '%m-%Y') as activitymonthyear
+from TRANS</string>
+		<string># bad customers, no of trans, amount moved, by month and year
+
+select status, date_format(convert(t.date, DATE), '%M-%Y') as 'M-Y',
+count(distinct t.account_id) as no_of_accounts,
+count(distinct t.trans_id) as no_of_trans,
+ceiling(sum(t.amount)) as moved_amount
+from trans t
+join disp d using (account_id)
+join loan l using (account_id)
+where d.type = 'owner'
+group by status, date_format(convert(t.date, DATE), '%M-%Y')</string>
+		<string># bad customers, no of trans, amount moved, by month and year
+
+select status, date_format(convert(t.date, DATE), '%M-%Y') as 'M-Y',
+count(distinct t.account_id) as no_of_accounts,
+count(distinct t.trans_id) as no_of_trans,
+ceiling(sum(t.amount)) as moved_amount
+from trans t
+join disp d using (account_id)
+join loan l using (account_id)
+where d.type = 'owner'
+group by status, 'M-Y'</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
