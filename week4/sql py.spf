@@ -123,6 +123,173 @@ order by total DESC ;
 	<array/>
 	<key>queryHistory</key>
 	<array>
+		<string>create or replace view payment_by_date AS
+select month, year, sum(amount), t.month_year
+from 
+(
+select date_format(payment_date, '%m') as month,
+date_format(payment_date, '%Y') as year,
+amount,
+date_format(payment_date, '%m-%Y') as month_year
+from payment
+order by month DESC) t
+group by month, year, month_year
+order by year, month</string>
+		<string>select month, year, sum(amount), t.month_year
+from 
+(
+select date_format(payment_date, '%m') as month,
+date_format(payment_date, '%Y') as year,
+amount,
+date_format(payment_date, '%m-%Y') as month_year
+from payment
+order by month DESC) t
+group by month, year, month_year
+order by year, month</string>
+		<string>select month, year, sum(amount), t.month_year
+from 
+(
+select date_format(payment_date, '%m') as month,
+date_format(payment_date, '%Y') as year,
+amount,
+date_format(payment_date, '%m-%Y') as month_year
+from payment
+order by month DESC) t
+group by month, year
+order by year, month</string>
+		<string>select month, year, sum(amount), month_year
+from 
+(
+select date_format(payment_date, '%m') as month,
+date_format(payment_date, '%Y') as year,
+amount,
+date_format(payment_date, '%m-%Y') as month_year
+from payment
+order by month DESC) t
+group by month, year
+order by year, month</string>
+		<string>select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%m') as month,
+date_format(payment_date, '%Y') as year,
+amount,
+date_format(payment_date, '%m-%Y') as month_year
+from payment
+order by month DESC) t
+group by month, year
+order by year, month</string>
+		<string>select month, year, sum(amount), date_format(payment_date, '%m-%Y') as month_year
+from 
+(
+select date_format(payment_date, '%m') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month, year
+order by year, month</string>
+		<string>select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%m') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month, year
+order by year, month</string>
+		<string>select month, year, sum(amount)
+from 
+(
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by date_format(payment_date, '%m') DESC) t
+group by date_format(payment_date, '%m'), year
+order by year, date_format(payment_date, '%m')</string>
+		<string>select month, year, sum(amount)
+from 
+(
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by date_format(payment_date, '%m') DESC) t
+group by date_format(payment_date, '%m'), year
+order by year, date_format(payment_date, '%m')date_format(payment_date, '%m')</string>
+		<string>select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month, year
+order by year, month</string>
+		<string>month</string>
+		<string>create or replace view payment_by_date AS
+select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as date,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month, year
+order by year, month</string>
+		<string>create or replace view payment_by_date AS
+select 'date', sum(amount)
+from 
+(
+select date_format(payment_date, '%d-%M-%Y') as 'date',
+amount
+from payment
+order by 'date' DESC) t
+group by 'date'
+order by 'date'</string>
+		<string>create or replace view payment_by_date AS
+select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%d-%M-%Y') as 'date',
+amount
+from payment
+order by 'date' DESC) t
+group by 'date'
+order by 'date'</string>
+		<string>create or replace view payment_by_date AS
+select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%d-%M-%Y') as 'date',
+amount
+from payment
+order by 'date' DESC) t
+group by 'date'
+order by year, month</string>
+		<string>create or replace view payment_by_date AS
+select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%d-%M-%Y') as 'date',
+amount
+from payment
+order by month DESC) t
+group by 'date'
+order by year, month</string>
+		<string>create or replace view payment_by_date AS
+select month, year, sum(amount)
+from 
+(
+select date_format(payment_date, '%M') as month,
+date_format(payment_date, '%Y') as year,
+amount
+from payment
+order by month DESC) t
+group by month, year
+order by year, month</string>
 		<string>select country, 
 sum(`amount`) as total,
 count(customer_id) as no_of_customers,
@@ -152,115 +319,6 @@ join customer using (address_id)
 join payment using(customer_id)
 group by country_id
 order by total DESC</string>
-		<string>select country_id, sum(`amount`)
-from `country`
-join city using(country_id)
-join `address` using(`city_id`)
-join customer using (address_id)
-join payment using(customer_id)
-group by country_id</string>
-		<string>select country_id, sum(payment)
-from `country`
-join city using(country_id)
-join `address` using(`city_id`)
-join customer using (address_id)
-join payment using(customer_id)
-group by country_id</string>
-		<string>select country_id
-from `country`
-join city using(country_id)
-join `address` using(`city_id`)
-join customer using (address_id)
-join payment using(customer_id)</string>
-		<string>select country_id
-from `country`
-join city using(country_id)
-join `address` using(`city_id`)
-join customer using (address_id)</string>
-		<string>select country_id
-from `country`
-join city using(country_id)
-join `address` using(`city_id`)</string>
-		<string>select country_id
-from `country`
-join city using(country_id)</string>
-		<string>select country_id
-from `country`
-join city using(coutry_id)</string>
-		<string>select country_id
-from `country`</string>
-		<string>select county_id
-from `country`</string>
-		<string>select state_id
-from state</string>
-		<string>select month, year, sum(amount)
-from 
-(
-select date_format(payment_date, '%M') as month,
-date_format(payment_date, '%Y') as year,
-amount
-from payment
-order by month DESC) t
-group by month, year
-order by year, month</string>
-		<string>select month, year, sum(amount)
-from 
-(
-select date_format(payment_date, '%M') as month,
-date_format(payment_date, '%Y') as year,
-amount
-from payment
-order by month DESC) t
-group by month, year
-order by month, year</string>
-		<string>select month, year, sum(amount)
-from 
-(
-select date_format(payment_date, '%M') as month,
-date_format(payment_date, '%Y') as year,
-amount
-from payment
-order by month DESC) t
-group by month, year
-order by month</string>
-		<string>select month, year, sum(amount)
-from 
-(
-select date_format(payment_date, '%M') as month,
-date_format(payment_date, '%Y') as year,
-amount
-from payment
-order by month DESC) t
-group by month
-order by month</string>
-		<string>select month, sum(amount)
-from 
-(
-select date_format(payment_date, '%M') as month,
-date_format(payment_date, '%Y') as year,
-amount
-from payment
-order by month DESC) t
-group by month
-order by month</string>
-		<string>select month, sum(amount)
-from 
-(
-select date_format(payment_date, '%M') as month,
-amount
-from payment
-order by month DESC) t
-group by month
-order by month</string>
-		<string>select month, sum(amount)
-from 
-(
-select date_format(payment_date, '%M-%Y') as month,
-amount
-from payment
-order by month DESC) t
-group by month
-order by month</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>
