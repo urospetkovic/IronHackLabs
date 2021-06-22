@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>sakila</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGuCwwZGhscHSEoLTE1ODxVJG51bGzTDQ4PEBQYV05TLmtl
+			eXNaTlMub2JqZWN0c1YkY2xhc3OjERITgAKAA4AEoxUWF4AFgAaA
+			CIANVHR5cGVUcm93c1RrZXlzXxAmU2VsZWN0aW9uRGV0YWlsVHlw
+			ZVByaW1hcnlLZXllZERldGFpbHPTDQ4PHh8goKCAB9IiIyQlWiRj
+			bGFzc25hbWVYJGNsYXNzZXNfEBNOU011dGFibGVEaWN0aW9uYXJ5
+			oyQmJ1xOU0RpY3Rpb25hcnlYTlNPYmplY3TSDg8pLKIqK4AJgAuA
+			DNIPLi8wWU5TLnN0cmluZ4AKV2ZpbG1faWTSIiMyM18QD05TTXV0
+			YWJsZVN0cmluZ6MyNCdYTlNTdHJpbmfSDy4vN4AKW2NhdGVnb3J5
+			X2lk0iIjOTpeTlNNdXRhYmxlQXJyYXmjOTsnV05TQXJyYXnSIiMm
+			PaImJwAIABEAGgAkACkAMgA3AEkATABRAFMAYgBoAG8AdwCCAIkA
+			jQCPAJEAkwCXAJkAmwCdAJ8ApACpAK4A1wDeAN8A4ADiAOcA8gD7
+			AREBFQEiASsBMAEzATUBNwE5AT4BSAFKAVIBVwFpAW0BdgF7AX0B
+			iQGOAZ0BoQGpAa4AAAAAAAACAQAAAAAAAAA+AAAAAAAAAAAAAAAA
+			AAABsQ==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1227, 610}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>table</key>
+			<string>film_category</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>#1
+select s.store_id, cy.city_id, co.country_id 
+from address a
+join city cy
+on a.city_id = cy.city_id
+join country co
+on co.country_id = cy.country_id
+join staff s
+on s.address_id = a.address_id
+where s.staff_id in (1, 2)</string>
+		<string>#4
+select f.title, count(f.film_id) as rentals
+from film f
+join inventory i
+on i.film_id = f.film_id
+join rental r
+on r.inventory_id = i.inventory_id
+group by f.title
+order by rentals DESC
+limit 2</string>
+		<string>#3 
+select c.name, avg(f.length) as average_length
+from film f
+join film_category fc
+on f.film_id = fc.film_id
+join category c
+on fc.category_id = c.category_id
+group by fc.category_id
+order by average_length DESC</string>
+		<string>#3 
+select c.name, avg(f.length) as average_length
+from film f
+join film_category fc
+on f.film_id = fc.film_id
+join category c
+on fc.category_id = c.category_id
+group by fc.category_id</string>
+		<string>#3 
+select c.category_name, avg(f.length) as average_length
+from film f
+join film_category fc
+on f.film_id = fc.film_id
+join category c
+on fc.category_id = c.category_id
+group by fc.category_id</string>
+		<string>#3 
+select avg(f.length) as average_length
+from film f
+join film_category fc
+on f.film_id = fc.film_id
+join category c
+on fc.category_id = c.category_id
+group by fc.category_id</string>
+		<string>#3 
+select avg(f.length) as average_length
+from film f
+join film_category fc
+on f.film_id = fc.film_id
+
+group by fc.category_id</string>
+		<string>#3 
+select avg(f.length) as average_length
+from film f
+join film_category fc
+on f.film_id = fc.film_id
+join
+group by fc.category_id</string>
+		<string>#3 
+select fc.category_id, avg(f.length) as average_length
+from film f
+join film_category fc
+on f.film_id = fc.film_id
+join
+group by fc.category_id</string>
+		<string>#3 
+select film_category fc, avg(f.length) as average_length
+from film f
+join film_category fc
+on f.film_id = fc.film_id
+join
+group by fc.category_id</string>
+		<string>#3 
+select avg(f.length) as average_length
+from film f
+join film_category fc
+on f.film_id = fc.film_id
+group by fc.category_id</string>
+		<string>#2
+select s.store_id, sum(p.amount) as total
+from payment p
+join staff s
+on s.staff_id = p.staff_id
+group by s.store_id</string>
+		<string>#2
+select sum(p.amount) as total
+from payment p
+join staff s
+on s.staff_id = p.staff_id
+group by s.store_id</string>
+		<string>#2
+select sum(p.amount) as total
+from payment p
+join staff s
+on s.staff_id = p.staff_id
+gropu by s.store_id</string>
+		<string>#1
+select s.store_id, cy.city_id, co.country_id 
+from address a
+join city cy
+on a.city_id = cy.city_id
+join country co
+on co.country_id = cy.country_id
+join staff s
+on s.address_id = a.address_id</string>
+		<string>#1
+select s.store_id, cy_city_id, co_country_id 
+from address a
+join city cy
+on a.city_id = cy.city_id
+join country co
+on co.country_id = cy.country_id
+join staff s
+on s.address_id = a.address_id</string>
+		<string>#1
+select a.address_id 
+from address a
+join city cy
+on a.city_id = cy.city_id
+join country co
+on co.country_id = cy.country_id
+join staff s
+on s.address_id = a.address_id</string>
+		<string>#1
+select a.address_id 
+from address a
+join city cy
+on a.city_id = cy.city_id
+join country co
+on co.country_id = cy.country_id</string>
+		<string>#1
+select a.address_id 
+from address a
+join city cy
+on a.city_id = cy.city_id
+join county co
+on co.country_id = cy.country_id</string>
+		<string>#1
+select a.address_id 
+from address a
+join city c
+on a.city_id = c.city_id</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
