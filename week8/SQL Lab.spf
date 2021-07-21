@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>adventureworks</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-7149112110977339767</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentFilterV2</key>
+			<dict>
+				<key>children</key>
+				<array/>
+				<key>filterClass</key>
+				<string>groupNode</string>
+				<key>isConjunction</key>
+				<true/>
+			</dict>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0
+			b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRk
+			YXRhgAGvEA8LDBkaGxwdISguMjY5PEBVJG51bGzTDQ4PEBQYV05T
+			LmtleXNaTlMub2JqZWN0c1YkY2xhc3OjERITgAKAA4AEoxUWF4AF
+			gAaACIAOVHR5cGVUcm93c1RrZXlzXxAmU2VsZWN0aW9uRGV0YWls
+			VHlwZVByaW1hcnlLZXllZERldGFpbHPTDQ4PHh8goKCAB9IiIyQl
+			WiRjbGFzc25hbWVYJGNsYXNzZXNfEBNOU011dGFibGVEaWN0aW9u
+			YXJ5oyQmJ1xOU0RpY3Rpb25hcnlYTlNPYmplY3TSDg8pLaMqKyyA
+			CYALgAyADdIPLzAxWU5TLnN0cmluZ4AKW1dvcmtPcmRlcklE0iIj
+			MzRfEA9OU011dGFibGVTdHJpbmejMzUnWE5TU3RyaW5n0g8vMDiA
+			CllQcm9kdWN0SUTSDy8wO4AKXxART3BlcmF0aW9uU2VxdWVuY2XS
+			IiM9Pl5OU011dGFibGVBcnJheaM9PydXTlNBcnJhedIiIyZBoiYn
+			AAgAEQAaACQAKQAyADcASQBMAFEAUwBlAGsAcgB6AIUAjACQAJIA
+			lACWAJoAnACeAKAAogCnAKwAsQDaAOEA4gDjAOUA6gD1AP4BFAEY
+			ASUBLgEzATcBOQE7AT0BPwFEAU4BUAFcAWEBcwF3AYABhQGHAZEB
+			lgGYAawBsQHAAcQBzAHRAAAAAAAAAgEAAAAAAAAAQgAAAAAAAAAA
+			AAAAAAAAAdQ=
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1223.5, 745}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string># 1
+SELECT c.CustomerID, c.`AccountNumber`, c.CustomerType, a.city, a.`PostalCode` from customer c
+join customeraddress ca using(CustomerID)
+join address a using(AddressID);
+# 2
+SELECT name, color from product
+ORDER BY SellStartDate DESC
+limit 20;
+# 3
+SELECT shelf, count(DISTINCT `ProductID`) as number from `productinventory`
+where `ModifiedDate` = '1998-05-02 00:00:00'
+group by shelf;
+# 4
+select * from contact c
+join vendorcontact vc using(`ContactID`)
+join vendor v using(`VendorID`)
+where c.firstname = 'Stuart'
+and v.name = 'G &amp; K Bicycle Corp.';
+# 5 
+SELECT sp.Name as RegionName, sum(s.TaxAmt) as taxtotal
+ FROM salesorderheader s # amounts
+ join salesterritory st using(TerritoryID) # country - filter
+ join address a on s.BillToAddressID = a.AddressID # ship address - to get region
+ join stateprovince sp using(StateProvinceID) # region 
+ where st.Name = 'Germany'
+ Group by sp.Name
+ order by sum(s.TaxAmt) DESC
+ LIMIT 1;
+
+# 6
+select round(sum((`ActualCost`)*`Quantity`)) as total, month(`TransactionDate`) as month 
+from `transactionhistory`
+group by month
+order by month ;
+# 7
+select * from `salesperson`
+where `SalesYTD` &gt; `SalesQuota` and
+`SalesLastYear` &gt; `SalesQuota`;
+# 8
+select count(DISTINCT(pr.ProductID)), count(DISTINCT(productphotoid)),count(DISTINCT(pd.`ProductDescriptionID`)) from productinventory pr
+join `productproductphoto` ppp using(productid)
+join productphoto ph using(productphotoid)
+join product p using(productid)
+join `productmodelproductdescriptionculture` pmd using(`ProductModelID`)
+join `productdescription` pd using(`ProductDescriptionID`);
+# 9
+select p.name, round(AVG(pd.`LineTotal`/pd.`OrderQty`)) as avg_price from `purchaseorderdetail` pd
+join product p using(productid)
+where `RejectedQty`&gt;0
+group by p.name
+order by avg_price DESC;
+# 10
+select * from employee
+where title like'%engineer%'
+and `SickLeaveHours`&gt;0;
+# 11
+select round((sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate)))/count(wr.`workorderid`)) as avg
+from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint';</string>
+			<key>table</key>
+			<string>workorderrouting</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>202.5</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string># 11
+select round((sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate)))/count(wr.`workorderid`)) as avg
+from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+select avg(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate) as avg
+from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+select round((sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate)))/count(wr.`workorderid`)) as avg
+
+from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+#select round((sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate)))/count(wr.`LocationID`)) as avg
+select * 
+from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+select round((sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate)))/count(wr.`LocationID`)) as avg
+from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select round((sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate)))/count(wr.`LocationID`)) as avg
+from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select (sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate)))/count(wr.`LocationID`) as avg
+from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select (sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate)))/count(wr.`LocationID`) from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select (sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate))) from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select sum(DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate)) from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select DATEDIFF( wr.ActualEndDate, wr.ScheduledStartDate) from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select DATEDIFF( wr.`ActualEndDate`, wr.ScheduledStartDate`) from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'
+;</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select DATEDIFF( wr.`ActualEndDate`, wr.aScheduledStartDate`) from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'
+;</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select round(avg(DATEDIFF( wr.`ActualEndDate`, wr.aScheduledStartDate`))) as days from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'
+;</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select * from workorderrouting wr
+join location l using(locationid)
+where l.name = 'Paint'</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select * from workorderrouting wr
+join location l using(locationid)</string>
+		<string># 11
+#select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`;
+select * from workorderrouting</string>
+		<string># 11
+select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) as days from `workorderrouting`</string>
+		<string># 11
+select round(avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`))) from `workorderrouting`</string>
+		<string># 11
+select avg(DATEDIFF( `ActualEndDate`, `ScheduledStartDate`)) from `workorderrouting`</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>8.0.23</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
