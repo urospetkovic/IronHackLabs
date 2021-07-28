@@ -1,4 +1,6 @@
 # Music genre analysis and prediction using audio features
+<img src="visuals/wave.jpeg" width='auto'>
+<br></br> 
 
 ## Content
   * [Project Intro](#project-intro)
@@ -26,7 +28,7 @@
 
 ## Data Cleaning and Wrangling
 
-+ ### Defining genres: Rock, Pop, Jazz, Hip-Hop/Rap, Electronic
++ ### Defining genres: Jazz, Rock, Hip-Hop/Rap, Pop, Electronic
 + ### Adding release years
 + ### Loading 152.298 songs in a DataFrame
 + ### Removing duplicates
@@ -37,28 +39,31 @@
 
 
 
-### Keys used in different genres. On guitar and bass easyest keys to play are E, D and A, and that's why these keys are used more in rock music. 
+### Keys used in different genres. 
+### On guitar and bass easyest keys to play are E, D and A, and that's why these keys are used more in rock music. 
 ### Brass players prefere F and A#, so these are mosty used in jazz.
 
-<img src="visuals/keys_by_genre.png" width="1000">
+<img src="visuals/keys_by_genre.png">
 
 <br></br> 
 
 
 ### Major scales are prevailing, only in 1957 and 1964 were minor scales used more. 
 ### In 1969 we have a peak usage of majors for the last 70 years.
-<img src="visuals/modes.png" width="1000">
+<img src="visuals/modes.png">
+<br></br> 
+
+### In the beginning of 21st century as technology evolved it became possible to make the master recording louder without distorsion. But making it louder shrinks the dinamic range. Unfortunatelly many people within the music industry embraced the "the more the merrier" idea and so the loudness war began. Around 2010 things got out of controll resulting so loud albums that fans and music professionals started criticizing. Awareness was raised about the issue arguing that "dynamic music sounds better". Finally by the late 2010s all streaming platforms introduced audio normalization that levels the playback loudness to -14LUFS. That means however your song is loud - in playback won't be louder than others. And so the war ended.
+<img src="visuals/loudness.png">
+<br></br> 
+
+### Pop music has a pretty small variance and most of it is between 120-130BPM. Electronic music is a bit slower but with much wider variance a lot of outliers.
+<img src="visuals/tempo_by_genre.png">
 <br></br> 
 
 
-### Tempo variance by genre.
-<img src="visuals/tempo_by_genre.png" width="1000">
-<br></br> 
-
-
-### Valence and acousticness over time. Valence being how happy and energetic the song is, 
-### and acousticness shows the amount of acoustic instruments played.
-<img src="visuals/acousticness_and_valence.png" width="1000">
+### Valence and acousticness over time. Valence being how happy and energetic the song is,  and acousticness shows the amount of acoustic instruments played.
+<img src="visuals/acousticness_and_valence.png">
 <br></br> 
 <br></br> 
 
