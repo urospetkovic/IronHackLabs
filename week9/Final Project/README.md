@@ -4,7 +4,7 @@
 
 ## Content
   * [Project Intro](#project-intro)
-  * [Web Scraping](#web-scraping)
+  * [Getting the Data with Spotify API](#getting-the-data-with-spotify-api)
   * [Data Cleaning and Wrangling](#data-cleaning-and-wrangling)
   * [Visual Data Analysis](#visual-data-analysis)
   * [Developing Machine Learning Model to predict the genre of given artist](#developing-machine-learning-model-to-predict-the-genre-of-given-artist)
@@ -18,7 +18,7 @@
 ### Audio Features are mathematical measurements computed directly from the sound wave. Can a machine hear the same? Let's see! 
 <br></br>
 
-## Web Scraping with Spotipy
+## Getting the Data with Spotify API
 
 + ### Finding playlists based on genre
 + ### Scraping all artists from playlists
@@ -30,16 +30,13 @@
 
 + ### Defining genres: Jazz, Rock, Hip-Hop/Rap, Pop, Electronic
 + ### Adding release years
-+ ### Loading 152.298 songs in a DataFrame
++ ### Loading songs in a DataFrame
 + ### Removing duplicates
 + ### Fixing tempo values range from 60 BPM to 200 BPM
 <br></br> 
 
 ## Visual Data Analysis
 
-
-
-### Keys used in different genres. 
 ### On guitar and bass easyest keys to play are E, D and A, and that's why these keys are used more in rock music. 
 ### Brass players prefere F and A#, so these are mosty used in jazz.
 
@@ -76,7 +73,8 @@
 + ### Using Randomized and Grid search to tune parameters of the model
 + ### Re-training with new parameters
 + ### Predicting
-+ ### Final Accuracy Score 87.4%
++ ### Final Accuracy Score 88%
+<img src="visuals/classification_report.png" width=600>
 <br></br> 
 
 ## Conclusion
