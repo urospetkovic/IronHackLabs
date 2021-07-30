@@ -7,7 +7,7 @@
   * [Getting the Data with Spotify API](#getting-the-data-with-spotify-api)
   * [Data Cleaning and Wrangling](#data-cleaning-and-wrangling)
   * [Visual Data Analysis](#visual-data-analysis)
-  * [Developing Machine Learning Model to predict the genre of given artist](#developing-machine-learning-model-to-predict-the-genre-of-given-artist)
+  * [Developing Machine Learning Model to predict the genre of given artist](#machine-learning)
   * [Conclusion](#conclusion)
 <br></br>
 
